@@ -1,0 +1,46 @@
+/* 
+*= require_tree .
+ 
+ */
+
+@import "bootstrap";
+
+//header 
+.navbar-nav img{
+    width:30px;
+}
+.navbar-nav {
+    // float:right;
+    width: 70%;
+    justify-content: space-between;
+}
+a {background-color:transparent !important;}
+.cart-image img{
+    width:100px;
+    height: 125px;
+    margin-left: -13px;
+
+}
+.cart-add-btn img{
+    width:20px;
+}
+.cart-remove-btn-1 img{
+    width:20px;
+}
+.cart-remove-btn img{
+    float:right;
+    width:20px;
+    margin-right: -13px;
+}
+.cart-view{
+    background: skyblue;
+    border-radius: 0 10px 0 0;
+    margin: 0 0 10px 0;
+}
+#cart-id{
+    // display: none;
+}
+.destroy{
+    cursor: pointer;
+    width:50px;  
+}

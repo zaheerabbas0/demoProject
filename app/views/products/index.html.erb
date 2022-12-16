@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+  <div class="container">
+      <h1>Products</h1>
+      <%= link_to 'New Product', new_product_path %>
+        <div class="row">
+          <% @products.each do |product| %>
+            <% @cate = Category.find_by(id:product.category_id) %>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-img-top">
+                    <% if product.image? %>
+                      <%= image_tag product.image.url, :class => "card-img-top" %>
+                    <% end %>
+                  </div>
+                  <div class="card-body">
+                      <h3 class="card-title"><%= product.p_name %></h3>
+                      <h5 class="card-title"> Price : <%= product.p_price %></h5>
+                      <h5 class="card-title"> Category : <%= @cate.c_name%></h5>
+                      <h5 class="card-title"> Qauntity : <%= product.qauntity %></h5>
+                      <p class="card-text"><%= product.p_details %></p>
+                      <%= link_to 'Show', product %><%= link_to 'Edit', edit_product_path(product) %>
+                      <p class='pak'><%= product.id %></p>
+                      <p class="destroy"><%= 'Destroy' %></p>
+                      <%= button_to "Add to cart", line_items_path(:product_id => product.id) %>
+                  </div>
+                </div>
+             </div>
+          <% end %>
+        </div>
+        
+        <div class="pagi">
+          <%= will_paginate @products,  list_classes: %w(pagination justify-content-center)  %>
+        </div>
+  </div>
+
+
