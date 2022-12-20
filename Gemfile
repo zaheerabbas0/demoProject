@@ -4,7 +4,11 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
+#Pendit gem
+gem "pundit"
+#devise gem
+gem 'devise', github: 'plataformatec/devise'
+gem 'erubis'
 #pagination gem
 gem 'will_paginate', '~> 3.3'
 gem 'will_paginate-bootstrap4'

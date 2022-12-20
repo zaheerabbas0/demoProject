@@ -7,15 +7,18 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
+        <span id="home">
         <%= link_to "Home", products_path %>
-          
+        </span>
         </li>
         <li class="nav-item">
-        <%= link_to "Orders", orders_path %>
-         
+       <span id='order'>
+        <%= link_to "Orders", orders_path%>
+         </span>
         </li>
-        <li class="nav-item">
-           <%= link_to image_tag("cart.png"), carts_show_path %>
+        <li id="nav-item">
+          <span id='cart-image'>
+           <%=link_to image_tag("cart.png"), carts_show_path %>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

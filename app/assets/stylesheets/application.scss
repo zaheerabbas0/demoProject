@@ -37,10 +37,30 @@ a {background-color:transparent !important;}
     border-radius: 0 10px 0 0;
     margin: 0 0 10px 0;
 }
-#cart-id{
-    // display: none;
+.cart-id{
+    display: none;
 }
 .destroy{
     cursor: pointer;
     width:50px;  
+}
+#home{
+    cursor: pointer;
+    width:50px;  
+}
+#order{
+    cursor: pointer;
+    width:50px;  
+}
+#cart-image{
+    cursor: pointer;
+    width:50px;  
+}
+.lineItem-id{
+    display: none;
+}
+.add-item{
+    border: 1px solid grey;
+    padding: 7px;
+    cursor: pointer;
 }
