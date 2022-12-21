@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <ul>
-  <div class="cart-show-page">
+  <div id="cart-show-page">
     <div class="col-lg-6 ">
       <% @cart.line_items.each do |line_item| %>
         <div class="row cart-view">
@@ -17,7 +17,6 @@
           </div>
           <div class="col-sm-4">
             <p class='lineItem-id'><%= line_item.id %></p>
-            <p class='cart-id'><%= line_item.product.id %></p>
             <p class="cart-remove-btn">
               <%=  image_tag("minus.png", class: 'remove_cart') %>
             </p>
@@ -37,4 +36,6 @@
 </ul>
 <h3>Sub total: <span id="sub_total"><%= @cart.sub_total %></span></h3>
 <%= link_to "Proceed to checkout", new_order_path %><br>
-<%# <%= link_to "Empty cart", cart_path(@current_cart), method: :delete, data: {confirm: "Are you sure?"} %>
+<span class="parent">
+<span class="cart-id"><%= @cart.id%></span>
+<span id="emp-cart"><%= "Empty cart" %></span></span>

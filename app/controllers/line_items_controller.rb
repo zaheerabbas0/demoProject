@@ -25,7 +25,7 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.find(params[:id])
     @line_item.quantity += 1
     @line_item.save
-    render json: { quantity: @line_item.quantity, total_price: @line_item.total_price, sub_total: @current_cart.sub_total}
+    render json: { quantity: @line_item.quantity, total_price: @line_item.total_price, sub_total: @current_cart.sub_total }
     # redirect_to cart_path(@line_item.quantity)
   end
 
@@ -33,7 +33,7 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.find(params[:id])
     @line_item.quantity -= 1 if @line_item.quantity > 1
     @line_item.save
-    render json: { quantity: @line_item.quantity, total_price: @line_item.total_price, sub_total: @current_cart.sub_total}
+    render json: { quantity: @line_item.quantity, total_price: @line_item.total_price, sub_total: @current_cart.sub_total }
     # redirect_to cart_path(@current_cart)
   end
 

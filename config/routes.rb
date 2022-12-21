@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { sessions: 'users/sessions' }
   root to:"products#index"
-  # resources :line_items
-  # post 'line_items/:product_id'
   get 'carts/show'
   get 'carts/:id' => "carts#show", as: "cart"
   delete 'carts/:id' => "carts#destroy"
