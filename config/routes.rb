@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users, controllers: { registrations: 'users/registrations',sessions: 'users/sessions' }  
+  # devise_for :users,controllers: {sessions: 'users/sessions'}
+
+  
   root to:"products#index"
+  # get "/users/sign_out"
   get 'carts/show'
   get 'carts/:id' => "carts#show", as: "cart"
   delete 'carts/:id' => "carts#destroy"

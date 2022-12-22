@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
   <div class="container">
       <h1>Products</h1>
-      <%= link_to 'New Product', new_product_path %>
         <div class="row">
           <% @products.each do |product| %>
             <% @cate = Category.find_by(id:product.category_id) %>
@@ -18,9 +17,12 @@
                       <h5 class="card-title"> Category : <%= @cate.c_name%></h5>
                       <h5 class="card-title"> Qauntity : <%= product.qauntity %></h5>
                       <p class="card-text"><%= product.p_details %></p>
-                      <%= link_to 'Show', product %><%= link_to 'Edit', edit_product_path(product) %>
+                      <%= link_to 'Show', product %><br><br>
                       <p class='pak'><%= product.id %></p>
+                      <% if user_signed_in? %>
+                      <%= link_to 'Edit', edit_product_path(product) %>
                       <p class="destroy"><%= 'Destroy' %></p>
+                      <% end %>
                       <span class='add-item'><%= "Add to cart" %></span>
                   </div>
                 </div>

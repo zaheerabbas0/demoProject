@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-  has_many :Products
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :products
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          mount_uploader :image, ImageUploader, :mount_on => :image
-
 end
