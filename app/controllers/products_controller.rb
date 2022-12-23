@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[edit update destroy] 
+  before_action :authenticate_user!, only: %i[new edit update destroy] 
   def index
     @products = Product.paginate(page: params[:page], per_page: 15)
   end
@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product = Product.new(user: current_user)
   end
 
 
@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = Product.create(product_params)
+    @product = current_user.products.build(product_params)
     respond_to do |format|
       if @product.save
         format.html { redirect_to product_url(@product), notice: "Product was successfully created." }

@@ -12,18 +12,21 @@
                     <% end %>
                   </div>
                   <div class="card-body">
-                      <h3 class="card-title"><%= product.p_name %></h3>
-                      <h5 class="card-title"> Price : <%= product.p_price %></h5>
-                      <h5 class="card-title"> Category : <%= @cate.c_name%></h5>
-                      <h5 class="card-title"> Qauntity : <%= product.qauntity %></h5>
-                      <p class="card-text"><%= product.p_details %></p>
-                      <%= link_to 'Show', product %><br><br>
-                      <p class='pak'><%= product.id %></p>
-                      <% if user_signed_in? %>
-                      <%= link_to 'Edit', edit_product_path(product) %>
-                      <p class="destroy"><%= 'Destroy' %></p>
+                    <h3 class="card-title"><%= product.p_name %></h3>
+                    <h5 class="card-title"> Price : <%= product.p_price %></h5>
+                    <h5 class="card-title"> Category : <%= @cate.c_name%></h5>
+                    <h5 class="card-title"> Qauntity : <%= product.qauntity %></h5>
+                    <p class="card-text"><%= product.p_details %></p>
+                    <%= link_to 'Show', product %><br><br>
+                    <p class='pak'><%= product.id %></p>
+                    <%if current_user %>
+                      <% if (product.user_id == current_user.id) %>
+                        <%= link_to 'Edit', edit_product_path(product) %>
+                        <p class="destroy"><%= 'Destroy' %></p>
+                      <%else%>
+                        <span class='add-item'><%= "Add to cart" %></span>
                       <% end %>
-                      <span class='add-item'><%= "Add to cart" %></span>
+                    <% end %>
                   </div>
                 </div>
              </div>
