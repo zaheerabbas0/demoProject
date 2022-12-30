@@ -72,3 +72,15 @@ a {background-color:transparent !important;}
     border-radius: 50px;
     width: 40px;
 }
+.order-name{
+    list-style: none;
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+}
+.main-order-item{
+    list-style: none;
+    display: flex;
+    width: 17%;
+    justify-content: space-between;
+}

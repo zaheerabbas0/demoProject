@@ -9,6 +9,8 @@ gem "pundit"
 #devise gem
 gem 'devise'
 gem 'erubis'
+# gem 'rails', '~> 5.2'
+gem 'stripe'
 #pagination gem
 gem 'will_paginate', '~> 3.3'
 gem 'will_paginate-bootstrap4'
