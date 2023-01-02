@@ -35,7 +35,8 @@
   </div>
 </ul>
 <h3>Sub total: <span id="sub_total"><%= @cart.sub_total %></span></h3>
-<%= link_to "Proceed to checkout", new_order_path %><br>
+<%# <%= link_to "Proceed to checkout", new_order_path %>
+<%= button_to "Proceed to checkout", charges_path, remote: true, data: {disable_with: "validating..."} %><br>
 <span class="parent">
 <span class="cart-id"><%= @cart.id%></span>
 <span id="emp-cart"><%= "Empty cart" %></span></span>

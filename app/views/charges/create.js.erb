@@ -1,0 +1,8 @@
+var stripe = Stripe('pk_test_51MISyiEJpqR0oV3PmMLi2g6rWjqnUaYemyv4tcR58Iyjrx9qDNs6vGNNyffD1FSYxMptO5dVulPBqw5mRactYNQA00K3xxVXO6');
+
+  stripe.redirectToCharges({
+    sessionId: '<%= @session.id %>'
+  }).then(function(result){
+    console.log(result.error.message);
+  });
+ 

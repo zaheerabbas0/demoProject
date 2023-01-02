@@ -5,4 +5,14 @@ class Product < ApplicationRecord
     belongs_to :user
     has_many :line_items, dependent: :destroy
     mount_uploader :image, ImageUploader, :mount_on => :image
+
+    # def to_s
+    # p_name
+    # end
+    # def to_builder
+    #     Jbuilder.new do|product|
+    #         product.p_price stripe_price_id
+    #         product.quantity 1
+    #     end
+    # end       
 end
