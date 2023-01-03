@@ -5,25 +5,7 @@ class ProductsController < ApplicationController
     @products = Product.paginate(page: params[:page], per_page: 15)
   end
   def search
-    # if params['category'].blank? or params['category']['id'].blank? 
-    #   @products = Product.all 
-    #   else 
-    #   category = Category.find(params['category']['id']) 
-    #   @products = category.product 
-    #   end 
-    #   @products = @products.search(params[:keywords]).paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
-
-    # @products = Product.search(params[:keywords]).paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
-    # @category = Category.find(params[:category_id])
-    # @product = @category.products
-  
-    # render json: @product, status: :ok
-    # if params[:search].blank?
-    #   redirect_to product_path and return
-    # else
-    #   @parameter=params[:search].downcase
-    #   @results=Product.all.where('lower(name) LIKE :search',search: '%#{@parameter}%')
-    # end
+    @products=Product.search(params[:search])
   end
   def show
    
@@ -84,6 +66,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:c_name, :category_id, :qauntity, :image, :p_name, :p_price, :p_details, :keywords)
+      params.require(:product).permit(:c_name, :category_id, :qauntity, :image, :p_name, :p_price, :p_details, :search)
     end
 end

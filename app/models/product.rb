@@ -6,13 +6,18 @@ class Product < ApplicationRecord
     has_many :line_items, dependent: :destroy
     mount_uploader :image, ImageUploader, :mount_on => :image
 
-    # def to_s
-    # p_name
-    # end
-    # def to_builder
-    #     Jbuilder.new do|product|
-    #         product.p_price stripe_price_id
-    #         product.quantity 1
-    #     end
-    # end       
+    def self.search(search)
+        # if search
+            cate=Category.find_by("c_name LIKE ?", "%#{search}%")
+            cate.products
+            # byebug
+            # if product
+            #     self.where(Category_id: product)
+            #     else
+            #         @products=Product.all
+            #     end
+            # else
+            # @products=Product.all
+        # end
+    end
 end
