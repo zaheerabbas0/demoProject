@@ -12,8 +12,8 @@
   <ul>
     <%sum=0%>
     <% order.line_items.each do |item| %>
-    <li class="main-order-item"> <span><%= item.product.p_name %> </span><span ><%= item.product.p_price%>*<%= item.quantity %></span><%=item.quantity * item.product.p_price %></li>
-    <%sum +=item.quantity * item.product.p_price %>
+    <li class="main-order-item"> <span><%= item.product.name %> </span><span ><%= item.product.price%>*<%= item.quantity %></span><%=item.quantity * item.product.price %></li>
+    <%sum +=item.quantity * item.product.price %>
     <% end %>
     <li>Sub-Total:<%= sum %> </li> 
   </ul>

@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221222164216) do
+ActiveRecord::Schema.define(version: 20230103133444) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,14 +26,6 @@ ActiveRecord::Schema.define(version: 20221222164216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text "content"
-    t.integer "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_comments_on_product_id"
-  end
-
   create_table "line_items", force: :cascade do |t|
     t.integer "quantity", default: 1
     t.integer "product_id"
@@ -41,8 +36,8 @@ ActiveRecord::Schema.define(version: 20221222164216) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "product_id"
+    t.bigint "order_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -58,32 +53,25 @@ ActiveRecord::Schema.define(version: 20221222164216) do
     t.string "pay_method"
   end
 
-  create_table "pcomments", force: :cascade do |t|
-    t.integer "product_id"
-    t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "prcomments", force: :cascade do |t|
     t.string "commenter"
     t.text "body"
-    t.integer "product_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_prcomments_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "p_name"
-    t.float "p_price"
-    t.text "p_details"
+    t.string "name"
+    t.float "price"
+    t.text "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.integer "category_id"
+    t.bigint "category_id"
     t.integer "qauntity"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
@@ -104,4 +92,9 @@ ActiveRecord::Schema.define(version: 20221222164216) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
+  add_foreign_key "prcomments", "products"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "users"
 end
