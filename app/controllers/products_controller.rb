@@ -1,12 +1,24 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[ show edit update destroy]
   before_action :authenticate_user!, only: %i[new edit update destroy] 
+  
   def index
-    @products = Product.paginate(page: params[:page], per_page: 15)
+    if params[:search].present? && params[:category_id].present?
+      cate=Category.find_by(id: params[:category_id])
+      # @products= cate.products.paginate(page: params[:page], per_page: 15)
+      pro=cate.products.where("name ILIKE ?", "%#{params[:search]}%")
+      @products=pro.paginate(page: params[:page], per_page: 15)
+    elsif params[:category_id].present?
+      cate=Category.find_by(id: params[:category_id])
+      @products= cate.products.paginate(page: params[:page], per_page: 15)
+    elsif params[:search].present?
+      pro=Product.where("name ILIKE ?", "%#{params[:search]}%")
+      @products=pro.paginate(page: params[:page], per_page: 15)
+    else
+      @products= Product.paginate(page: params[:page], per_page: 15)
+    end
   end
-  def search
-    @products=Product.search(params[:search])
-  end
+
   def show
    
   end
@@ -66,6 +78,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:c_name, :category_id, :qauntity, :image, :p_name, :p_price, :p_details, :search)
+      params.require(:product).permit(:c_name, :category_id, :qauntity, :image, :name, :price, :details, :search,:category)
     end
 end
