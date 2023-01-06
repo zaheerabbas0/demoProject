@@ -16,11 +16,11 @@
       <ul class="navbar-nav">
        <li class="nav-item">
           <span id="search-bar">
-           <%= form_tag(products_search_path, method: :get) do %>
-    <%= text_field_tag :keywords, params[:keywords] %>
-    <%# <%= collection_select :category, :id, Category.all.order('c_name ASC'), :id, :c_name,{include_blank: 'Select Category'} %> 
-    <%= submit_tag 'Search', name: nil %>
-<% end %>
+            <%= form_tag( products_path, method: :GET  ) do %>
+              <%= text_field_tag :search, params[:search] %>
+              <%= select_tag :category_id, options_for_select(Category.pluck(:c_name, :id)),{prompt:'select'} %>
+              <%= submit_tag 'Search', name: nil %>
+            <% end %>
           </span>
         </li>
         <li class="nav-item">
