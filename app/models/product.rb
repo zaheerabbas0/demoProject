@@ -5,5 +5,4 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :line_items, dependent: :destroy
   mount_uploader :image, ImageUploader, :mount_on => :image
-
 end

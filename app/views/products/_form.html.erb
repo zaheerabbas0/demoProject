@@ -9,22 +9,25 @@
       </ul>
     </div>
   <% end %>
+  
   <div class="field">
-  <%= form.file_field :image %>
-  <% if @product.image? %>
-  <%= image_tag @product.image.url%>
-  <%= form.check_box :remove_image %>
-  Remove image
-  <% end %>
+    <%= form.file_field :image %>
+    <% if @product.image? %>
+      <%= image_tag @product.image.url%>
+      <%= form.check_box :remove_image %>
+        Remove image
+    <% end %>
   </div>
+  
   <div class="field">
-  <%= form.label :Category %>
-  <%= form.select :category_id, Category.pluck(:c_name, :id) %>
+    <%= form.label :Category %>
+    <%= form.select :category_id, Category.pluck(:c_name, :id) %>
   </div>
+  
   <div class="field">
-  <%= form.label :Qauntity %>
-  <%= form.text_field :qauntity, id: :product_qauntity %>
-</div>
+    <%= form.label :Qauntity %>
+    <%= form.text_field :qauntity, id: :product_qauntity %>
+  </div>
 
   <div class="field">
     <%= form.label :Name %>

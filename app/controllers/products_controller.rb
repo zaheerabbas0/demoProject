@@ -1,11 +1,9 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy]
   before_action :authenticate_user!, only: %i[new edit update destroy] 
-  
   def index
     if params[:search].present? && params[:category_id].present?
       cate=Category.find_by(id: params[:category_id])
-      # @products= cate.products.paginate(page: params[:page], per_page: 15)
       pro=cate.products.where("name ILIKE ?", "%#{params[:search]}%")
       @products=pro.paginate(page: params[:page], per_page: 15)
     elsif params[:category_id].present?
@@ -19,20 +17,14 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
-   
-  end
+  def show;  end
 
   def new
     @product = Product.new(user: current_user)
   end
-
-
   def edit
     @product = Product.find(params[:id])
   end
-
-  # POST /products or /products.json
   def create
     @product = current_user.products.build(product_params)
     respond_to do |format|
@@ -58,24 +50,19 @@ class ProductsController < ApplicationController
       end
     end
   end
-
   # DELETE /products/1 or /products/1.json
   def destroy
     @product.destroy
-
     respond_to do |format|
       format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
       format.json { head :no_content }
     end
-    
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
-
     # Only allow a list of trusted parameters through.
     def product_params
       params.require(:product).permit(:c_name, :category_id, :qauntity, :image, :name, :price, :details, :search,:category)

@@ -1,46 +1,25 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
-<div class="show-image">
-<% if @product.image? %>
-<%= image_tag @product.image.url %>
-<% end %>
-</div>
-<p>
-  <strong> Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<p>
-  <strong>Details:</strong>
-  <%= @product.details %>
-</p>
-<p>
-</p>
-<br>
-
-<h2 class="comments-1">Comments</h2>
-<% @product.prcomments.each do |comment| %>
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
-<% end %>
-
-<h2>Add a comment:</h2>
-<%= form_with(model: [ @product, @product.prcomments.build ]) do |form| %>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+  <div class="show-image">
+    <% if @product.image? %>
+      <%= image_tag @product.image.url %>
+    <% end %>
+  </div>
+  <p><strong> Name:</strong><%= @product.name %></p>
+  <p><strong>Price:</strong><%= @product.price %></p>
+  <p><strong>Details:</strong><%= @product.details %></p><br>
+  <h2 class="comments-1">Comments</h2>
+  <% @product.prcomments.each do |comment| %>
+    <p>
+      <strong>Comment:</strong>
+      <%= comment.body %>
+    </p>
+  <% end %>
+  <h2>Add a comment:</h2>
+  <%= form_with(model: [ @product, @product.prcomments.build ]) do |form| %>
+    <p><%= form.label :body %><br><%= form.text_area :body %></p>
+    <p><%= form.submit %></p>
+  <% end %>
 </div>
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

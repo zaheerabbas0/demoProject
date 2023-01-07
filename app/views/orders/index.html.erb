@@ -4,7 +4,7 @@
   <p>Name: <%= order.name %></p>
   <p>Email: <%= order.email %></p>
   <p>Line Items: </p>
-    <ul class="order-name">
+  <ul class="order-name">
     <li>Item name  </li> 
     <li>Price</li>  
     <li>Total</li>
@@ -12,8 +12,8 @@
   <ul>
     <%sum=0%>
     <% order.line_items.each do |item| %>
-    <li class="main-order-item"> <span><%= item.product.name %> </span><span ><%= item.product.price%>*<%= item.quantity %></span><%=item.quantity * item.product.price %></li>
-    <%sum +=item.quantity * item.product.price %>
+      <li class="main-order-item"> <span><%= item.product.name %> </span><span ><%= item.product.price%>*<%= item.quantity %></span><%=item.quantity * item.product.price %></li>
+      <%sum +=item.quantity * item.product.price %>
     <% end %>
     <li>Sub-Total:<%= sum %> </li> 
   </ul>

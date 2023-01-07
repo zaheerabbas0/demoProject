@@ -1,6 +1,4 @@
 class LineItemsController < ApplicationController
-  # render json: {quantity: @line_item.quantity}
-
   def create
     chosen_product = Product.find(params[:product_id])
     current_cart = @current_cart
@@ -26,7 +24,6 @@ class LineItemsController < ApplicationController
     @line_item.quantity += 1
     @line_item.save
     render json: { quantity: @line_item.quantity, total_price: @line_item.total_price, sub_total: @current_cart.sub_total }
-    # redirect_to cart_path(@line_item.quantity)
   end
 
   def reduce_quantity
@@ -34,13 +31,11 @@ class LineItemsController < ApplicationController
     @line_item.quantity -= 1 if @line_item.quantity > 1
     @line_item.save
     render json: { quantity: @line_item.quantity, total_price: @line_item.total_price, sub_total: @current_cart.sub_total }
-    # redirect_to cart_path(@current_cart)
   end
 
   private
 
   def line_item_params
     params.require(:line_item).permit(:quantity, :product_id, :cart_id, :order_id)
-    # render json: {add_qntity: @line_item.add_quantity}
   end
 end
