@@ -81,6 +81,19 @@ $(document).ready(function () {
         })
     })
 })
+$(document).ready(function () {
+    $(document).on('click', '.show-item', function (e) {
+        $.ajax({
+            type: 'POST',
+            url: 'line_items',
+            dataType: 'json',
+            data: { 'product_id': $(this).parent().find('.show-card-id').html() },
+            success: function (data) {
+
+            }
+        })
+    })
+})
 // for Empty cart
 $(document).ready(function () {
     $(document).on('click', '#emp-cart', function (e) {

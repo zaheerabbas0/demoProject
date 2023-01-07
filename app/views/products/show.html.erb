@@ -5,9 +5,17 @@
       <%= image_tag @product.image.url %>
     <% end %>
   </div>
-  <p><strong> Name:</strong><%= @product.name %></p>
-  <p><strong>Price:</strong><%= @product.price %></p>
-  <p><strong>Details:</strong><%= @product.details %></p><br>
+  <div class="show-card-id">
+    <p><strong> Name:</strong><%= @product.name %></p>
+    <p><strong>Price:</strong><%= @product.price %></p>
+    <p><strong>Details:</strong><%= @product.details %></p><br>
+    <%if current_user %>
+      <% if !(@product.user_id == current_user.id) %>
+        <p class='show-card-id'><%=@product.id%></p>
+        <span class='show-item'> Add to cart</span>
+      <%end%>
+    <%end%>
+  </div>
   <h2 class="comments-1">Comments</h2>
   <% @product.prcomments.each do |comment| %>
     <p><strong>Comment:</strong><%= comment.body %></p>
@@ -18,5 +26,9 @@
     <p><%= form.submit %></p>
   <% end %>
 </div>
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<%if current_user %>
+  <% if (@product.user_id == current_user.id) %>
+    <%= link_to 'Edit', edit_product_path(@product) %> 
+  <%end%>
+<%end%>
 <%= link_to 'Back', products_path %>
