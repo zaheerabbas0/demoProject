@@ -10,10 +10,7 @@
   <p><strong>Details:</strong><%= @product.details %></p><br>
   <h2 class="comments-1">Comments</h2>
   <% @product.prcomments.each do |comment| %>
-    <p>
-      <strong>Comment:</strong>
-      <%= comment.body %>
-    </p>
+    <p><strong>Comment:</strong><%= comment.body %></p>
   <% end %>
   <h2>Add a comment:</h2>
   <%= form_with(model: [ @product, @product.prcomments.build ]) do |form| %>
