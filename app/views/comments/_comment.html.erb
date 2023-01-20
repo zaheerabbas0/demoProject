@@ -1,0 +1,29 @@
+<article>
+
+<%if current_user%>
+  <%= image_tag(comment.user.image,  alt: "...",
+            style:
+            " display:inline-block;
+              border-radius:50%;
+              height:50px;
+              width:50px;")%>
+              <%=comment.user.name%>
+  <p><%=comment.body%></p>
+  <div class='sub-comment'>
+    <%=render comment.comments %>
+  </div>
+  <a href='#' class='display-form-comment'>Reply</a>
+  <div class='comment-form'>
+    <%= render partial: 'comments/form', locals: {product: comment.product, parent: comment } %>
+  </div>
+  <%end%>
+
+</article>
+<script>
+  document.querySelectorAll('.display-form-comment').forEach((el) => {
+      el.addEventListener('click', (ev) => { 
+        ev.preventDefault();
+        el.nextElementSibling.style = 'display:block;'
+      })
+  })
+</script>

@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :prcomments, dependent: :destroy
+  has_many :comments, dependent: :destroy
   validates :name, :price, :image, presence: true
   belongs_to :category
   belongs_to :user

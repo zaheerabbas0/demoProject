@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230103133444) do
+ActiveRecord::Schema.define(version: 20230110122530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20230103133444) do
     t.string "c_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "commenter"
+    t.text "body", null: false
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.integer "parent_id"
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -53,15 +65,6 @@ ActiveRecord::Schema.define(version: 20230103133444) do
     t.string "pay_method"
   end
 
-  create_table "prcomments", force: :cascade do |t|
-    t.string "commenter"
-    t.text "body"
-    t.bigint "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_prcomments_on_product_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "price"
@@ -88,13 +91,15 @@ ActiveRecord::Schema.define(version: 20230103133444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.text "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
-  add_foreign_key "prcomments", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
 end

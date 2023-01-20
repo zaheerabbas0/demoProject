@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy]
+  before_action :set_product, only: %i[ edit update destroy]
   before_action :authenticate_user!, only: %i[new edit update destroy] 
   def index
     if params[:search].present? && params[:category_id].present?
@@ -17,7 +17,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show;  end
+  def show
+    @product=Product.find(params[:id])
+  end
 
   def new
     @product = Product.new(user: current_user)
@@ -65,6 +67,6 @@ class ProductsController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:c_name, :category_id, :qauntity, :image, :name, :price, :details, :search,:category)
+      params.require(:product).permit(:c_name, :category_id, :qauntity, :image, :name, :price, :details, :search, :category)
     end
 end

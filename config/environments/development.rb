@@ -9,6 +9,11 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+
+  if Rails.env.development?
+    Rails.application.config.action_cable.allowed_request_origins =  ['http://localhost:3000']
+  end
+  
   # Show full error reports.
   config.consider_all_requests_local = true
 

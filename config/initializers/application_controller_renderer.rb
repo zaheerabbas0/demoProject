@@ -6,3 +6,6 @@
 #     https: false
 #   )
 # end
+# config.app_middleware.use Warden::Manager do |config|
+#     Devise.warden_config = config
+# end

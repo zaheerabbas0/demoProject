@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
-  # get 'charges/new'
+  get 'rooms/new'
+
+  get 'rooms/create'
+
+  get 'rooms/update'
+
+  get 'rooms/edit'
+
+  get 'rooms/destroy'
+
+  get 'rooms/index'
+
+  get 'rooms/show'
+
+  mount ActionCable.server, at: '/cable'
   resources :charges, only: [:new, :create]
   devise_for :users, controllers: { registrations: 'users/registrations',sessions: 'users/sessions' }  
   root to:"products#index"
@@ -14,10 +28,8 @@ Rails.application.routes.draw do
   delete 'line_items/:id' => "line_items#destroy"
   post 'charges' => "charges#create"
   resources :products do
-    resources :prcomments
+    resources :comments
   end
-  # post 'products/search', to: "products#search"
-  # get 'products/search', to: "products#search"
   resources :orders
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
