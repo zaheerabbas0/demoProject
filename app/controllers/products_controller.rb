@@ -1,13 +1,12 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ edit update destroy]
-  before_action :authenticate_user!, only: %i[new edit update destroy] 
+  before_action :authenticate_user!, only: %i[create new edit update destroy] 
   def index
+    cate=Category.find_by(id: params[:category_id])
     if params[:search].present? && params[:category_id].present?
-      cate=Category.find_by(id: params[:category_id])
       pro=cate.products.where("name ILIKE ?", "%#{params[:search]}%")
       @products=pro.paginate(page: params[:page], per_page: 15)
     elsif params[:category_id].present?
-      cate=Category.find_by(id: params[:category_id])
       @products= cate.products.paginate(page: params[:page], per_page: 15)
     elsif params[:search].present?
       pro=Product.where("name ILIKE ?", "%#{params[:search]}%")
@@ -28,16 +27,25 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
   def create
-    @product = current_user.products.build(product_params)
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+    # @product = current_user.products.build(product_params)
+       @product=ProductCreator.new( 
+       name: params[:product][:name],
+       price: params[:product][:price],
+       details: params[:product][:details],
+       image: params[:product][:image], 
+       category_id: params[:product][:category_id], 
+       quantity: params[:product][:qauntity],
+       current_user: current_user.id).create_product
+       respond_to do |format|
+        if @product.save
+          format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
+          format.json { render :show, status: :created, location: @product }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @product.errors, status: :unprocessable_entity }
+        end
       end
-    end
+        
   end
 
   # PATCH/PUT /products/1 or /products/1.json
@@ -67,6 +75,6 @@ class ProductsController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:c_name, :category_id, :qauntity, :image, :name, :price, :details, :search, :category)
+      params.require(:product).permit(:c_name, :category_id, :qauntity, :image, :name, :price, :current_user, :details, :search, :category)
     end
 end

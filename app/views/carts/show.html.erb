@@ -21,11 +21,8 @@
               <%=  image_tag("minus.png", class: 'remove_cart') %>
             </p>
             <p>Quantity: <span class='quantity'><%= line_item.quantity %></span></p>
-            <span class="cart-add-btn"> <%= image_tag("add.png")%>
-            </span>
-            <span class="cart-remove-btn-1">
-              <%= image_tag("minus.png") %>
-            </span>
+            <span class="cart-add-btn"> <%= image_tag("add.png")%></span>
+            <span class="cart-remove-btn-1"><%= image_tag("minus.png") %></span>
             <p>Total Price: <span class="total_price"><%= (line_item.total_price) %></span>
             </p>
           </div>

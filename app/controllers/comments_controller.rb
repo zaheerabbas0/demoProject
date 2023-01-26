@@ -3,17 +3,10 @@ class CommentsController < ApplicationController
      @product = Product.find(params[:product_id])
      @comment = current_user.comments.new(comment_params)
      if @comment.save
-     ActionCable.server.broadcast 'comments',  render_comment
-     
-    # CommentsController.render( partial: 'comments/comment', locals: { comment: @comment,product: @product, parent: nil })
-        # image: @comment.user.image, 
-        # user: @comment.user.name, 
-        # body: @comment.body
-        # head :ok
+      ActionCable.server.broadcast 'comments',comment: render_comment
      else
       flash[:notice]=@comment.error.full_messages.to_sentence
      end
-      # redirect_to product_path(params[:product_id])
   end
   def render_comment
     CommentsController.renderer.instance_variable_set(:@env, {"HTTP_HOST"=>"localhost:3000", 
@@ -21,13 +14,10 @@ class CommentsController < ApplicationController
       "REQUEST_METHOD"=>"GET", 
       "SCRIPT_NAME"=>"",   
       "warden" => warden})
-      # byebug
     CommentsController.render(
       partial: 'comments/comment',
       locals: {
-        
         comment: @comment
-        # parent: nil
       }
     )
   end

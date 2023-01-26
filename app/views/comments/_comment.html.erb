@@ -1,5 +1,4 @@
 <article>
-
 <%if current_user%>
   <%= image_tag(comment.user.image,  alt: "...",
             style:
@@ -9,15 +8,14 @@
               width:50px;")%>
               <%=comment.user.name%>
   <p><%=comment.body%></p>
-  <div class='sub-comment'>
-    <%=render comment.comments %>
-  </div>
   <a href='#' class='display-form-comment'>Reply</a>
   <div class='comment-form'>
     <%= render partial: 'comments/form', locals: {product: comment.product, parent: comment } %>
   </div>
+  <div class='sub-comment'>
+    <%=render comment.comments %>
+  </div>
   <%end%>
-
 </article>
 <script>
   document.querySelectorAll('.display-form-comment').forEach((el) => {

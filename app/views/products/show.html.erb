@@ -17,11 +17,11 @@
     <%end%>
   </div>
 
-  <h2 class="comments-1">Comments</h2>
+  <h2 id="comments-1">Comments</h2>
   <div id='comments'>
       <%= render @product.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
-      <%= render partial: 'comments/form', locals: {product: @product, parent: nil}%>
   </div>
+      <%= render partial: 'comments/form', locals: {product: @product, parent: nil}%>
 </div>
 <%if current_user %>
   <% if (@product.user_id == current_user.id) %>
