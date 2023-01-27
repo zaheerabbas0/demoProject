@@ -9,12 +9,7 @@
     <p><strong> Name:</strong><%= @product.name %></p>
     <p><strong>Price:</strong><%= @product.price %></p>
     <p><strong>Details:</strong><%= @product.details %></p><br>
-    <%if current_user %>
-      <% if !(@product.user_id == current_user.id) %>
-        <p class='show-card-id'><%=@product.id%></p>
-        <span class='show-item'> Add to cart</span>
-      <%end%>
-    <%end%>
+    <%= show_page_btn %>
   </div>
 
   <h2 id="comments-1">Comments</h2>
@@ -23,9 +18,5 @@
   </div>
       <%= render partial: 'comments/form', locals: {product: @product, parent: nil}%>
 </div>
-<%if current_user %>
-  <% if (@product.user_id == current_user.id) %>
-    <%= link_to 'Edit', edit_product_path(@product) %> 
-  <%end%>
-<%end%>
+<%= show_page_edit_btn %>
 <%= link_to 'Back', products_path %>

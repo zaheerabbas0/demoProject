@@ -1,18 +1,19 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ edit update destroy]
-  before_action :authenticate_user!, only: %i[create new edit update destroy] 
+  before_action :set_product, only: %i[ edit update destroy ]
+  before_action :authenticate_user!, only: %i[ create new edit update destroy ] 
+  PAGE = 5
   def index
     cate=Category.find_by(id: params[:category_id])
     if params[:search].present? && params[:category_id].present?
       pro=cate.products.where("name ILIKE ?", "%#{params[:search]}%")
-      @products=pro.paginate(page: params[:page], per_page: 15)
+      @products=pro.paginate(page: params[:page], per_page: PAGE)
     elsif params[:category_id].present?
-      @products= cate.products.paginate(page: params[:page], per_page: 15)
+      @products= cate.products.paginate(page: params[:page], per_page: PAGE)
     elsif params[:search].present?
       pro=Product.where("name ILIKE ?", "%#{params[:search]}%")
-      @products=pro.paginate(page: params[:page], per_page: 15)
+      @products=pro.paginate(page: params[:page], per_page: PAGE)
     else
-      @products= Product.paginate(page: params[:page], per_page: 15)
+      @products= Product.paginate(page: params[:page], per_page: PAGE)
     end
   end
 

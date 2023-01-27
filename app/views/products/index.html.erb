@@ -3,7 +3,6 @@
       <h1>Products</h1>
         <div class="row">      
           <% @products.each do |product| %>
-            <% @cate = Category.find_by(id:product.category_id) %>
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="card" style="width: 18rem;">
                   <div class="card-img-top">
@@ -14,19 +13,12 @@
                   <div class="card-body">
                     <h3 class="card-title"><%= product.name %></h3>
                     <h5 class="card-title"> Price : <%= product.price %></h5>
-                    <h5 class="card-title"> Category : <%= @cate.c_name%></h5>
+                    <h5 class="card-title"> Category : <%= product.category.c_name%></h5>
                     <h5 class="card-title"> Qauntity : <%= product.qauntity %></h5>
                     <p class="card-text"><%= product.details %></p>
                     <%= link_to 'Show', product %><br><br>
                     <p class='pak'><%= product.id %></p>
-                    <%if current_user %>
-                      <% if (product.user_id == current_user.id) %>
-                        <%= link_to 'Edit', edit_product_path(product) %>
-                        <p class="destroy"><%= 'Destroy' %></p>
-                      <%else%>
-                        <span class='add-item'><%= "Add to cart" %></span>
-                      <% end %>
-                    <% end %>
+                    <%= add_to_cart_btn(product)%>
                   </div>
                 </div>
              </div>
