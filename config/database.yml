@@ -25,7 +25,7 @@ test:
 production:
   <<: *default
   database: db/production.postgress
-  # username: hello_world
-  # password: <%= ENV['HELLO_WORLD_DATABASE_PASSWORD'] %>
-  # host: <%= ENV['HELLO_WORLD_DATABASE_HOST'] %>
+  username: postgres
+  password: 123
+   host: 'localhost'
   # port: <%= ENV['HELLO_WORLD_DATABASE_PORT'] %>
