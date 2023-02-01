@@ -58,8 +58,14 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'dotenv-rails'
 end
-
+gem 'figaro'
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger', '>= 0.1.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-figaro-yml', '~> 1.0.2'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
