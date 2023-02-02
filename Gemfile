@@ -8,6 +8,7 @@ end
 gem "pundit"
 #devise gem
 gem 'devise'
+ruby '2.5.7'
 gem 'erubis'
 # gem 'rails', '~> 5.2'
 gem 'stripe'
