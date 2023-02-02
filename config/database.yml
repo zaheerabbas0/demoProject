@@ -27,5 +27,4 @@ production:
   database: db/production.postgress
   username: postgres
   password: 123
-   host: 'localhost'
-  # port: <%= ENV['HELLO_WORLD_DATABASE_PORT'] %>
+  host: 'localhost'
