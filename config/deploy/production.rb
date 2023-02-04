@@ -21,9 +21,9 @@
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-role :app, %w{ubuntu@3.112.221.158}
-role :web, %w{ubuntu@3.112.221.158}
-role :db,  %w{ubuntu@3.112.221.158}
+role :app, %w{root@35.79.52.24}
+role :web, %w{root@35.79.52.24}
+role :db,  %w{root@35.79.52.24}
 set :ssh_options, {
    keys: %w(/home/zaheer/Downloads/app-kp.pem),
    forward_agent: false,
