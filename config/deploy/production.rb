@@ -3,8 +3,8 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-# server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
-# server "db.example.com", user: "deploy", roles: %w{db}
+# server "root@35.79.52.24", user: "ubuntu", roles: %w{app web}, other_property: :other_value
+# server "db.root@35.79.52.24", user: "deploy", roles: %w{db}
 
 
 
@@ -23,9 +23,10 @@
 # user: "ubuntu"
 
 
-role :app, %w{root@35.79.52.24}
-role :web, %w{root@35.79.52.24}
-role :db,  %w{root@35.79.52.24}
+server "35.79.52.24", user:'ubuntu', roles: [:app, :web, :db], :primary => true 
+# role :app, %w{root@35.79.52.24}
+# role :web, %w{root@35.79.52.24}
+# role :db,  %w{root@35.79.52.24}
 set :ssh_options, {
    keys: %w(/home/zaheer/Downloads/app-kp.pem),
    forward_agent: false,

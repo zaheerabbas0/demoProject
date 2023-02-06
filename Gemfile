@@ -61,6 +61,7 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 gem 'figaro'
+gem "capistrano-secrets-yml"
 group :development do
   gem 'capistrano'
   gem 'capistrano-bundler'
