@@ -21,6 +21,8 @@
 # role :db,  %w{deploy@example.com}
 # server "aonetech"
 # user: "ubuntu"
+
+
 role :app, %w{root@35.79.52.24}
 role :web, %w{root@35.79.52.24}
 role :db,  %w{root@35.79.52.24}
@@ -29,8 +31,7 @@ set :ssh_options, {
    forward_agent: false,
    auth_methods: %w(publickey password)
  }
-
-
+ 
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb

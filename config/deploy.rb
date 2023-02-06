@@ -2,6 +2,7 @@
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # Default deploy_to directory is /var/www/my_app_name
+
 lock "~> 3.17.1"
 set :application, "demoProject"
 set :repo_url, "git@github.com:zaheerabbas0/demoProject.git"
@@ -18,3 +19,8 @@ set :keep_releases, 5
 set :rvm_ruby_version, 'ruby-2.5.7'
 set :ssh_options, verify_host_key: :secure
 set :passenger_restart_with_touch, true
+after 'deploy:updated', :updated_cache do 
+    on roles(:app) do
+       execute :chmod, "-R 777 #{fetch(:deploy_to)}/home/demoProject/#{fetch(:cache_path)}"
+    end
+  end
