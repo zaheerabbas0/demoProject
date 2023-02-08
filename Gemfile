@@ -62,12 +62,11 @@ group :development, :test do
 end
 gem 'figaro'
 group :development do
-gem 'capistrano'
-gem 'capistrano-bundler'
-gem 'capistrano-passenger', '>= 0.1.1'
-gem 'capistrano-rails'
-gem 'capistrano-rvm'
-gem 'capistrano-figaro-yml', '~> 1.0.2'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger', '>= 0.1.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
