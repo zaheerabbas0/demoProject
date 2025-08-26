@@ -1,4 +1,6 @@
+
 class CommentsChannel < ApplicationCable::Channel
+#zaheer
   # def subscribed
   #   stream_from "comments"
   # end
