@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount ActionCable.server, at: '/cable'
+  # mount ActionCable.server, at: '/cable'
   resources :charges, only: %i[new create]
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   root to: 'products#index'
