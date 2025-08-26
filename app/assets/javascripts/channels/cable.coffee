@@ -2,5 +2,5 @@
 # #= require_self
 # #= require_tree .
 # #
-@App ||= {}
-App.cable = ActionCable.createConsumer()
+#@App ||= {}
+#App.cable = ActionCable.createConsumer()
